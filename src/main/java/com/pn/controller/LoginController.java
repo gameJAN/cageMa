@@ -80,7 +80,7 @@ public class LoginController {
         }
         User user = userService.queryUserByCode(loginUser.getUserCode());
         if(user!=null){
-            if(user.getUserState().equals(WarehouseConstants.USER_STATE_NOT_PASS)){
+            if(user.getUserState().equals(WarehouseConstants.USER_STATE_PASS)){
                 String userPwd = loginUser.getUserPwd();
                 userPwd = DigestUtil.hmacSign(userPwd);
                 if(userPwd.equals(user.getUserPwd())){
