@@ -1,10 +1,8 @@
 package com.pn.controller;
 
 import com.google.code.kaptcha.Producer;
-import com.pn.entity.CurrentUser;
-import com.pn.entity.LoginUser;
-import com.pn.entity.Result;
-import com.pn.entity.User;
+import com.pn.entity.*;
+import com.pn.service.AuthService;
 import com.pn.service.UserService;
 import com.pn.utils.DigestUtil;
 import com.pn.utils.TokenUtils;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +21,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -71,6 +71,7 @@ public class LoginController {
 
 
 
+
     @RequestMapping("/login")
     public Result login(@RequestBody LoginUser loginUser){
 
@@ -97,5 +98,29 @@ public class LoginController {
         }else{
             return Result.err(Result.CODE_ERR_BUSINESS,"账号不存在");
         }
+    }
+
+    @RequestMapping("/curr-user")
+    public Result currentUser(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
+
+        CurrentUser currentUser =  tokenUtils.getCurrentUser(token);
+        return Result.ok(currentUser);
+    }
+
+    @Autowired
+    private AuthService authService;
+    @RequestMapping("/user/auth-list")
+    public Result loadAuthTree(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
+        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
+        int userId = currentUser.getUserId();
+
+        List<Auth> authTreeList = authService.authTreeByUid(userId);
+        return  Result.ok(authTreeList);
+
+    }
+    @RequestMapping("/logout")
+    public Result logout(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
+        redisTemplate.delete(token);
+        return  Result.ok("退出系统");
     }
 }

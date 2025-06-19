@@ -39,6 +39,7 @@ public class TokenUtils {
     private static final String CLAIM_NAME_USERNAME = "CLAIM_NAME_USERNAME";
 
     private String sign(CurrentUser currentUser, String securityKey){
+//        生成jwt token
         String token = JWT.create()
                 .withClaim(CLAIM_NAME_USERID, currentUser.getUserId())
                 .withClaim(CLAIM_NAME_USERCODE, currentUser.getUserCode())
