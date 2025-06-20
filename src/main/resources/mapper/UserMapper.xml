@@ -5,4 +5,19 @@
     <select id="findUserByCode" resultType="user">
         select * from user_info where user_code = #{userCode} and is_delete = 0
     </select>
+    <select id="findUserRowCount" resultType="integer">
+        select count(*) from user_info
+        <where>
+            <if test="userCode != null and UserCode!= ''">
+                and user_code like concat('%', #{userCode},'%')
+            </if>
+            <if test="userType!=null and userType != ''">
+                and user_type = #{userType}
+            </if>
+            <if test="userState != nul and userState!=''">
+                and user_state = #{userState}
+            </if>
+            and is_delete = 0
+        </where>
+    </select>
 </mapper>
