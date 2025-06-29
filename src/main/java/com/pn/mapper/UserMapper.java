@@ -2,7 +2,8 @@ package com.pn.mapper;
 
 import com.pn.entity.User;
 import com.pn.page.Page;
-import io.lettuce.core.dynamic.annotation.Param;
+import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface UserMapper {
 
     public User findUserByCode(String userCode);
 
-    public List<User> findUserByPage(@Param("page") Page page,@Param("user") User user);
+    public List<User> findUserByPage(@Param("page") Page page, @Param("user") User user);
 
     public Integer findUserRowCount(User user);
 }

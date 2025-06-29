@@ -16,6 +16,7 @@ public class UserController {
 
     @RequestMapping("/user-list")
     public Result userList(Page page, User user){
-
+      page =  userService.queryUserByPage(page,user);
+      return Result.ok(page);
     }
 }
