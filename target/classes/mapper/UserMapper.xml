@@ -37,4 +37,10 @@
         limit #{page.limitIndex}, #{page.pageSize}
     </select>
 
+
+    <insert id="insertUser">
+        insert into user_info values(
+          null,  #{userCode},#{userName},#{userPwd},null, 0 ,0 , #{createBy},now(),null,null
+        )
+    </insert>
 </mapper>
