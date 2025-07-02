@@ -1,4 +1,5 @@
 package com.pn.controller;
+import com.pn.dto.AssignRoleData;
 import com.pn.entity.*;
 import com.pn.page.Page;
 import com.pn.service.RoleService;
@@ -56,5 +57,12 @@ public class UserController {
 
         List<Role> roleList = roleService.querUserRoleByUid(userId);
         return Result.ok(roleList);
+    }
+//    给用户分配角色的url接口
+
+    @RequestMapping("/assignRole")
+    public Result assignRole(@RequestBody AssignRoleData assignRoleData){
+        userService.assignRole(assignRoleData);
+        return Result.ok("修改成功");
     }
 }

@@ -9,4 +9,5 @@ public interface RoleMapper {
 
     public List<Role> findUserRoleByUid(Integer userId);
 
+    public Integer findRoleIdByName(String roleName);
 }

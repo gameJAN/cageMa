@@ -5,4 +5,12 @@
     <select id="userRoleByUid" resultType="userRole">
         select * from user_role where user_id = #{userId}
     </select>
+    <delete id="removeUserRoleByUid">
+        delete from user_role where user_id = #{userId}
+    </delete>
+    <insert id="insertUserRole">
+        insert into user_role values (
+        null, #{roleId},#{userId}
+                                     )
+    </insert>
 </mapper>

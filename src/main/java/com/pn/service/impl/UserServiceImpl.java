@@ -1,13 +1,18 @@
 package com.pn.service.impl;
 
+import com.pn.dto.AssignRoleData;
 import com.pn.entity.Result;
 import com.pn.entity.User;
+import com.pn.entity.UserRole;
+import com.pn.mapper.RoleMapper;
 import com.pn.mapper.UserMapper;
+import com.pn.mapper.UserRoleMapper;
 import com.pn.page.Page;
 import com.pn.service.UserService;
 import com.pn.utils.DigestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -54,5 +59,29 @@ public class UserServiceImpl implements UserService {
              return Result.ok("用户修改成功");
          }
         return Result.err(Result.CODE_ERR_BUSINESS,"用户修改失败");
+    }
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
+    @Transactional
+    @Override
+    public Result assignRole(AssignRoleData assignRoleData) {
+
+       userRoleMapper.removeUserRoleByUid(assignRoleData.getUserId());
+
+       List<String> roleNameList = assignRoleData.getRoleCheckList();
+       for (String roleName : roleNameList){
+           Integer roleId = roleMapper.findRoleIdByName(roleName);
+           UserRole userRole = new UserRole();
+           userRole.setRoleId(roleId);
+           userRole.setUserId(assignRoleData.getUserId());
+           userRoleMapper.insertUserRole(userRole);
+       }
+
+        return null;
     }
 }
