@@ -46,4 +46,13 @@ public class UserServiceImpl implements UserService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"用户添加失败");
     }
+
+    @Override
+    public Result setUserState(User user) {
+         int i =  userMapper.setStateByUid(user.getUserId(),user.getUserState());
+         if(i>0){
+             return Result.ok("用户修改成功");
+         }
+        return Result.err(Result.CODE_ERR_BUSINESS,"用户修改失败");
+    }
 }

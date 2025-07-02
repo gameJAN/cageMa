@@ -43,4 +43,8 @@
           null,  #{userCode},#{userName},#{userPwd},null, 0 ,0 , #{createBy},now(),null,null
         )
     </insert>
+
+    <update id="setStateByUid">
+        update user_info set user_state = #{param2} where user_id = #{param1}
+    </update>
 </mapper>

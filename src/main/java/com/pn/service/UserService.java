@@ -10,4 +10,6 @@ public interface UserService {
     public Page queryUserByPage(Page page ,User user);
 
     public Result saveUser(User user);
+
+    public Result setUserState(User user);
 }

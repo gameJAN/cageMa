@@ -18,4 +18,6 @@ public interface UserMapper {
     public Integer findUserRowCount(User user);
 
     public int insertUser(User user);
+
+    public int setStateByUid(Integer userId, String userState);
 }
