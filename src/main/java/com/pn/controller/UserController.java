@@ -10,6 +10,7 @@ import com.pn.utils.WarehouseConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -64,5 +65,17 @@ public class UserController {
     public Result assignRole(@RequestBody AssignRoleData assignRoleData){
         userService.assignRole(assignRoleData);
         return Result.ok("修改成功");
+    }
+    @RequestMapping("/deleteUser/{userId}")
+    public Result deleteUserById(@PathVariable Integer userId){
+
+        Result result = userService.remoeUserByIds(Arrays.asList(userId));
+        return  result;
+    }
+    @RequestMapping("/deleteUserList")
+    public Result deleteUserByIds(@RequestBody List<Integer> userIdList){
+
+        Result result = userService.remoeUserByIds(userIdList);
+        return  result;
     }
 }

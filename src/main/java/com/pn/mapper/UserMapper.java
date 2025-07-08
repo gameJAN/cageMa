@@ -20,4 +20,6 @@ public interface UserMapper {
     public int insertUser(User user);
 
     public int setStateByUid(Integer userId, String userState);
+
+    public int setIsDeleteByUids(List<Integer> userIdList);
 }

@@ -84,4 +84,14 @@ public class UserServiceImpl implements UserService {
 
         return null;
     }
+
+    @Override
+    public Result remoeUserByIds(List<Integer> userIdList) {
+
+        int i = userMapper.setIsDeleteByUids(userIdList);
+        if(i>0){
+            return Result.ok("用户删除成功");
+        }
+        return Result.err(Result.CODE_ERR_BUSINESS,"删除失败");
+    }
 }

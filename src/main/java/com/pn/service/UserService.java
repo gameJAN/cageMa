@@ -5,6 +5,8 @@ import com.pn.entity.Result;
 import com.pn.entity.User;
 import com.pn.page.Page;
 
+import java.util.List;
+
 public interface UserService {
     public User queryUserByCode(String userCode);
 
@@ -15,4 +17,6 @@ public interface UserService {
     public Result setUserState(User user);
 
     public Result assignRole(AssignRoleData assignRoleData);
+
+    public Result remoeUserByIds(List<Integer> userIdList);
 }

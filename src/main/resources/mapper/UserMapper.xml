@@ -47,4 +47,11 @@
     <update id="setStateByUid">
         update user_info set user_state = #{param2} where user_id = #{param1}
     </update>
+
+    <update id="setIsDeleteByUids">
+        update user_info set is_delete  = 1 where user_id in ()
+    <foreach collection="list" open="(" close= ")" separator="," item="userId">
+        #{userId}
+    </foreach>
+    </update>
 </mapper>
