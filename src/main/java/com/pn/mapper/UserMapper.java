@@ -22,4 +22,6 @@ public interface UserMapper {
     public int setStateByUid(Integer userId, String userState);
 
     public int setIsDeleteByUids(List<Integer> userIdList);
+
+    public int setUserNameByUid(User user);
 }

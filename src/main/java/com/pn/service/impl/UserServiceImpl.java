@@ -94,4 +94,14 @@ public class UserServiceImpl implements UserService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"删除失败");
     }
+
+    @Override
+    public Result setUserById(User user) {
+        int i  = userMapper.setUserNameByUid(user);
+
+        if(i>0){
+            return Result.ok("用户修改成功");
+        }
+        return Result.err(Result.CODE_ERR_BUSINESS,"修改失败");
+    }
 }

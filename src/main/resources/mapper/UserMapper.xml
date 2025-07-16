@@ -54,4 +54,12 @@
         #{userId}
     </foreach>
     </update>
+
+    <update id="setUserNameByUid">
+        update user_info
+        set
+        user_name = #{userName},update_by = #{updateBy},update_time  = now()
+        where user_id = #{userId}
+    </update>
+
 </mapper>

@@ -19,4 +19,6 @@ public interface UserService {
     public Result assignRole(AssignRoleData assignRoleData);
 
     public Result remoeUserByIds(List<Integer> userIdList);
+
+    public Result setUserById(User user);
 }

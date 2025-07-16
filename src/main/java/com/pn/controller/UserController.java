@@ -78,4 +78,12 @@ public class UserController {
         Result result = userService.remoeUserByIds(userIdList);
         return  result;
     }
+    @RequestMapping("/updateUser")
+    public Result updateUser(@RequestBody User user ,@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
+        CurrentUser currentUser =  tokenUtils.getCurrentUser(token);
+        int updateBy = currentUser.getUserId();
+        user.setUpdateBy(updateBy);
+        Result result = userService.setUserById(user);
+        return  result;
+    }
 }
