@@ -2,6 +2,7 @@ package com.pn.service;
 
 import com.pn.dto.AssignRoleData;
 import com.pn.entity.Result;
+import com.pn.entity.Role;
 import com.pn.entity.User;
 import com.pn.page.Page;
 
@@ -21,4 +22,8 @@ public interface UserService {
     public Result remoeUserByIds(List<Integer> userIdList);
 
     public Result setUserById(User user);
+
+    public Result setPwdById(Integer userId);
+
+
 }

@@ -86,4 +86,10 @@ public class UserController {
         Result result = userService.setUserById(user);
         return  result;
     }
+
+    @RequestMapping("/updatePwd/{userId}")
+    public Result resetpassword(@PathVariable Integer userId){
+        Result result = userService.setPwdById(userId);
+        return  result;
+    }
 }

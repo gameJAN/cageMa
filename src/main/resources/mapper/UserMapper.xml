@@ -61,5 +61,11 @@
         user_name = #{userName},update_by = #{updateBy},update_time  = now()
         where user_id = #{userId}
     </update>
+    <update id="setPwdByUid">
+        update user_info
+        set
+            user_pwd = #{param2}
+        where user_id = #{param1}
+    </update>
 
 </mapper>

@@ -104,4 +104,15 @@ public class UserServiceImpl implements UserService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"修改失败");
     }
+
+    @Override
+    public Result setPwdById(Integer userId) {
+//        给定初始密码123456并对其加密
+       String password = DigestUtil.hmacSign("123456");
+        int i  =  userMapper.setPwdByUid(userId,password);
+        if(i>0){
+            return Result.ok("重置成功");
+        }
+        return Result.err(Result.CODE_ERR_BUSINESS,"重置失败");
+    }
 }

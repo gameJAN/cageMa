@@ -24,4 +24,6 @@ public interface UserMapper {
     public int setIsDeleteByUids(List<Integer> userIdList);
 
     public int setUserNameByUid(User user);
+
+    public int setPwdByUid(Integer userId , String password);
 }

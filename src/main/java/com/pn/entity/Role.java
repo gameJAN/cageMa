@@ -34,4 +34,6 @@ public class Role implements Serializable {
 
     private Date updateTime;//修改时间
 
+    private String getCode; //角色创建人
+
 }
